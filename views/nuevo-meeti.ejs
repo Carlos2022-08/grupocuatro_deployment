@@ -1,0 +1,49 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%- nombrePagina %></h1>
+    <form class="default-form" action="/nuevo-meeti" method="POST">
+        <legend>Sobre la Publicación</legend>
+        <div class="campo">
+            <label>Grupo</label>
+            <select name="grupoId">
+                <option value="" disabled selected>-- Selecciona Grupo --</option>
+                <% if(grupos.length > 0 )  { %>
+                    <% grupos.forEach(grupo => {  %>
+                        <option value="<%= grupo.id %>"><%= grupo.nombre %></option>
+                    <% }) %>
+                <% } %>
+            </select>
+        </div>
+        <div class="campo">
+            <label>Titulo</label>
+            <input type="text" name="titulo" placeholder="Titulo de la Publicación">
+        </div>
+        <div class="campo">
+            <label>Invitado</label>
+            <input type="text" name="invitado" placeholder="Nombre Participante (si aplica)">
+        </div>
+        <div class="columnas-2 grid">
+            <div class="campo">
+                <label>Fecha</label>
+                <input type="date" name="fecha" placeholder="Fecha Publicación">
+            </div>
+            <div class="campo">
+                <label>Hora</label>
+                <input type="time" name="hora" placeholder="Hora Publicación">
+            </div>
+        </div>
+        <div class="campo">
+            <label>Cupo</label>
+            <input type="number" min="1" name="cupo" placeholder="Cupo Publicación (si aplica)">
+        </div>
+        <div class="campo descripcion">
+            <label>Descripción</label>
+            <div class="contenedor-editor">
+                <input type="hidden" id="x" name="descripcion">
+                <trix-editor input="x"></trix-editor>
+            </div>
+        </div>
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-rosa" value="Crear Publicación">
+        </div>
+    </form>
+</main>
